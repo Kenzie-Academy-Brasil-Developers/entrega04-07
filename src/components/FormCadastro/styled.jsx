@@ -57,10 +57,13 @@ export const Form = styled.form`
     background-color: var(--grey-2);
     color: white;
 
+    &:-webkit-autofill {
+      -webkit-box-shadow: 0 0 0 30px var(--grey-2) inset;
+      -webkit-text-fill-color: white !important;
+    }
+
     &:focus {
       outline: 0;
-      background-color: white;
-      color: black;
     }
 
     &[type="number"]::-webkit-inner-spin-button {

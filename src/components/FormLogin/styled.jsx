@@ -52,7 +52,7 @@ export const Formu = styled.form`
   align-items: center;
 
   h2 {
-    padding: 3rem 2rem ;
+    padding: 3rem 2rem;
     font-weight: bold;
     font-size: 1.3rem;
     font-family: var(--font);
@@ -60,11 +60,14 @@ export const Formu = styled.form`
   }
 
   div {
+
+
     display: flex;
     flex-direction: column;
     gap: 1rem;
 
     width: 90%;
+
 
     label {
       width: max-content;
@@ -83,10 +86,45 @@ export const Formu = styled.form`
 
       background-color: var(--grey-2);
       color: white;
+      &:-webkit-autofill {
+        -webkit-box-shadow: 0 0 0 30px var(--grey-2) inset;
+        -webkit-text-fill-color: white !important;
+      }
     }
 
     input:focus {
       outline: 0;
+    }
+    div {
+      position: relative;
+      min-width: 100%;
+
+      flex-direction: row;
+      align-items: center;
+
+      border: 1px solid white;
+      border-radius: 0.5rem;
+
+      background-color: var(--grey-2);
+      input {
+        border: unset;
+        min-width: 85%;
+      }
+
+      button {
+        position: absolute;
+        right: 0;
+
+        min-width: 10%;
+        height: max-content;
+
+        display: flex;
+        justify-content: center;
+
+        border: unset;
+        background-color: unset;
+        color: white;
+      }
     }
   }
   .login {
@@ -108,3 +146,15 @@ export const Formu = styled.form`
     font-size: 0.9rem;
   }
 `;
+
+
+export const Perror = styled.p`
+height: 12px;
+
+margin: -0.6rem 0 0 0.8rem;
+
+color: var(--error);
+
+font-size: 12px;
+
+`

@@ -62,7 +62,9 @@ table {
 	--error: #E83F5B;
 	--font: 'Inter', sans-serif;
 }
-
+button{
+	cursor: pointer;
+}
 `;
 
 export default GlobalStyle;
