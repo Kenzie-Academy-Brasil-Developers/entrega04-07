@@ -1,44 +1,36 @@
-import { useEffect, useState } from "react";
-import api from "../../services";
-import { useNavigate, useParams } from "react-router-dom";
 import { Header, SectionIntro, SectionDesenvolvimento } from "./styled";
 
+import { useContext } from "react";
+import { Navigate } from "react-router-dom";
+import { Context } from "../../contexts/AuthContexts";
+import NewTechnology from "../CreateTechnology/CreateTechnology";
+
 const User = () => {
-  const params = useParams();
-  const [user, setUser] = useState({});
-  const navigate = useNavigate();
+  const { user, logout, loading, setNewTechnology, newTechnology } =
+    useContext(Context);
 
-  useEffect(() => {
-    api.get(`/users/${params.id}`).then((res) => setUser(res.data));
-  }, [params.id]);
+  if (loading) return <h1 style={{ color: "white" }}>Carregando...</h1>;
 
-  function sair() {
-    navigate("/login", { replace: true });
-  }
+  if (!user) return <Navigate replace to="/login" />;
 
   return (
     <>
-      {user?.name && (
-        <>
-          <Header>
-            <h1>Kenzie Hub</h1>
-            <button onClick={sair}>Sair</button>
-          </Header>
-          <SectionIntro>
-            <div>
-              <h2>Olá {user.name}</h2>
-              <span>{user.course_module}</span>
-            </div>
-          </SectionIntro>
-          <SectionDesenvolvimento>
-            <h3>Que pena! Estamos em desenvolvimento :(</h3>
-            <p>
-              Nossa aplicação está em desenvolvimento, em breve teremos
-              novidades
-            </p>
-          </SectionDesenvolvimento>
-        </>
-      )}
+      {newTechnology && <NewTechnology />}
+      <>
+        <Header>
+          <h1>Kenzie Hub</h1>
+          <button onClick={logout}>Sair</button>
+        </Header>
+        <SectionIntro>
+          <div>
+            <h2>Olá {user.name}</h2>
+            <span>{user.course_module}</span>
+          </div>
+        </SectionIntro>
+        <SectionDesenvolvimento>
+          
+        </SectionDesenvolvimento>
+      </>
     </>
   );
 };

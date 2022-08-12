@@ -2,13 +2,10 @@ import { Form, Section } from "./styled";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import api from "../../services";
-import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
+import { useContext } from "react";
+import { Context } from "../../contexts/AuthContexts";
 
 const FormCadastro = () => {
-  const navigate = useNavigate();
-
   // SCHEMA, REQUISIÇÕES DE DOS INPUTS
   const formSchema = yup.object().shape({
     name: yup.string().required("Preencha seu nome"),
@@ -41,30 +38,8 @@ const FormCadastro = () => {
     margin: "-0.6rem 0 0 2rem",
   };
 
-  // FUNCTION QUE CHAMA API E CRIA USER
-  const onSubmit = ({ name, password, email, bio, contact, course_module }) => {
-    const user = {
-      name,
-      password,
-      email,
-      bio,
-      contact,
-      course_module,
-    };
-    api
-      .post("/users", user)
-      .then((response) => {
-        toast.success('Conta criada!')
+  const { onSubmitCadastrar } = useContext(Context);
 
-
-        setTimeout(() => {
-          navigate("/login", { replace: true });
-        }, 1000);
-      })
-      .catch((response) => {
-        toast.error("Conta ja existe!");
-      });
-  };
   return (
     <>
       <Section>
@@ -72,7 +47,7 @@ const FormCadastro = () => {
           <h2>Crie sua conta</h2>
           <span>Rapido e grátis, vamos nessa</span>
         </div>
-        <Form onSubmit={handleSubmit(onSubmit)}>
+        <Form onSubmit={handleSubmit(onSubmitCadastrar)}>
           <label htmlFor="nome">Nome *</label>
           <input
             id="nome"
