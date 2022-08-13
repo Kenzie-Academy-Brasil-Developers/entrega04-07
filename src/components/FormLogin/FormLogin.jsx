@@ -60,7 +60,6 @@ const FormLogin = () => {
               className="password"
               {...register("password")}
             />
-            <p>ola</p>
             <button onClick={typeInput} className="type-visibility">
               {type === "password" ? <MdVisibilityOff /> : <MdVisibility />}
             </button>

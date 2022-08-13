@@ -11,7 +11,7 @@ const Router = () => {
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/cadastrar" element={<Cadastro />} />
-        <Route path="/usuario/:id" element={<Usuario />} />
+        <Route path="/usuario" element={<Usuario />} />
         <Route path="*" element={<Navigate replace to="/login" />} />
       </Routes>
     </AnimatePresence>

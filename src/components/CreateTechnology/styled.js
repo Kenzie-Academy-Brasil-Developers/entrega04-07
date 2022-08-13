@@ -25,10 +25,13 @@ const animationModalTechnology = keyframes`
 `;
 
 export const ModalCreateTechnology = styled.form`
-  min-width: 30rem;
-  max-width: 30rem;
+  width: 90%;
   height: 20rem;
   background-color: var(--grey-3);
+
+  @media screen and (min-width: 536px) {
+    width: 480px;
+  }
 
   border-radius: 0.2rem;
 
@@ -82,6 +85,8 @@ export const ModalCreateTechnology = styled.form`
       width: 90%;
       height: 2.5rem;
 
+      opacity: 0.5;
+
       padding-left: 0.5rem;
 
       -webkit-box-shadow: 0 0 0 30px var(--grey-2) inset;
@@ -93,6 +98,7 @@ export const ModalCreateTechnology = styled.form`
 
       &:focus {
         outline: 0;
+        opacity: 1;
       }
 
       option {

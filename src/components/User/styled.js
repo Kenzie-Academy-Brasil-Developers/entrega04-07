@@ -53,7 +53,8 @@ export const SectionIntro = styled.section`
 `;
 
 export const SectionDesenvolvimento = styled.section`
-  height: 65vh;
+  height: max-content;
+  padding-bottom: 3rem;
 
   background-color: var(--grey-4);
   color: white;
@@ -61,7 +62,6 @@ export const SectionDesenvolvimento = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
 
   gap: 1.5rem;
 
