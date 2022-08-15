@@ -120,11 +120,10 @@ export const ContextProvider = ({ children }) => {
 
   //FUNÇÃO EDITAR STATUS TECNOLOGIA
   const editStatus = (data) => {
-    api.put(`/users/techs/${idTech}`, data)
-    .then((res) => {
-      toast.success(`Status editado para ${data.status}`)
-      setEditTechnology(false)
-    })
+    api.put(`/users/techs/${idTech}`, data).then((res) => {
+      toast.success(`Status editado para ${data.status}`);
+      setEditTechnology(false);
+    }).catch((error) => console.log(error));
   };
   return (
     <Context.Provider

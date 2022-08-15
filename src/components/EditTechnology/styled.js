@@ -119,7 +119,7 @@ export const ModalEdit = styled.form`
       font-weight: 200;
     }
 
-    div {
+    .divButtons {
       width: 100%;
       display: flex;
       justify-content: center;
@@ -145,6 +145,25 @@ export const ModalEdit = styled.form`
       .buttonRemove {
         background-color: var(--grey-1);
       }
+    }
+
+    .error {
+      height: 15px;
+      width: max-content;
+      margin: -0.4rem 0 -0.5rem 1.5rem;
+
+      display: flex;
+      align-items: center;
+
+      gap: 0.5rem;
+      color: red;
+    }
+    p {
+      height: 15px;
+      font-size: 13px;
+      font-weight: 600;
+      width: max-content;
+      color: red;
     }
   }
 `;
