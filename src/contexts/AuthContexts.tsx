@@ -41,9 +41,9 @@ export interface IUserCreateTechnology {
 
 interface ContextValues {
   onSubmitLogin: (data: IUserLogin) => void;
-  cadastro: (e: any) => void;
+  cadastro: () => void;
   createTechnology: (data: IUserCreateTechnology) => void;
-  removeTech: (event: any) => void;
+  removeTech: () => void;
   editStatus: (data: IUserEditStatus) => void;
   onSubmitCadastrar: ({
     name,
@@ -94,21 +94,23 @@ export const ContextProvider = ({ children }: IContextProps) => {
       }
     };
     LoadUser();
-  }, [user]);
+  }, [user,technologies]);
 
   //FUNÇÃO QUE FAZ LOGIN
   const onSubmitLogin = ({ email, password }: IUserLogin) => {
     const userObject = { email, password };
     api
       .post("/sessions", userObject)
-      .then((response: any) => {
+      .then((response) => {
         toast.success("Login");
         setUser(response.data.user);
         setTechnologies(response.data.user.techs);
         localStorage.setItem("context:token", response.data.token);
         navigate(`/usuario`, { replace: true });
       })
-      .catch((response: any) => toast.error("Email ou senha invalido"));
+      .catch((response: any) => toast.error("Email ou senha invalido", {
+        autoClose: 1000
+      }));
   };
 
   //FUNÇÃO QUE PASSA OS VALORES DOS INPUTS E CADASTRAR USER OU RETORNA ERROR
@@ -131,19 +133,22 @@ export const ContextProvider = ({ children }: IContextProps) => {
     api
       .post("/users", user)
       .then(() => {
-        toast.success("Conta criada!");
+        toast.success("Conta criada!", {
+          autoClose: 1000
+        });
         setTimeout(() => {
           navigate("/login", { replace: true });
         }, 1000);
       })
       .catch(() => {
-        toast.error("Conta ja existe!");
+        toast.error("Conta ja existe!", {
+          autoClose: 1000
+        });
       });
   };
 
   //FUNÇÃO QUE DIRECIONA PARA PAGE CADASTRAR
-  const cadastro = (e: any) => {
-    e.preventDefault();
+  const cadastro = () => {
     navigate("/cadastrar", { replace: true });
   };
 
@@ -161,17 +166,22 @@ export const ContextProvider = ({ children }: IContextProps) => {
     await api
       .post("/users/techs", data)
       .then(() => {
-        toast.success("Technologia cadastrada");
+        toast.success("Technologia cadastrada", {
+          autoClose: 1000
+        });
         setNewTechnology(false);
       })
-      .catch(() => toast.error("Technologia já cadastrada"));
+      .catch(() => toast.error("Technologia já cadastrada", {
+        autoClose: 1000
+      }));
   };
 
   //FUNÇÃO REMOVER TECNOLOGIA
-  const removeTech = (event: any) => {
-    event.preventDefault();
+  const removeTech = () => {
     api.delete(`/users/techs/${idTech}`);
-    toast.success("Tecnologia removida!");
+    toast.success("Tecnologia removida!", {
+      autoClose: 1000
+    });
     setEditTechnology(false);
   };
 
@@ -180,7 +190,9 @@ export const ContextProvider = ({ children }: IContextProps) => {
     api
       .put(`/users/techs/${idTech}`, data)
       .then((res) => {
-        toast.success(`Status editado para ${data.status}`);
+        toast.success(`Status editado para ${data.status}`, {
+          autoClose: 1000
+        });
         setEditTechnology(false);
       })
       .catch((error) => console.log(error));
