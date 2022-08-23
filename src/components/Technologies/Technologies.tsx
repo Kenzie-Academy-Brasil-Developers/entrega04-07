@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import React, { useContext } from "react";
 import { Context } from "../../contexts/AuthContexts";
 import { ListTechnologies, MainContent } from "./styled";
 import { MdModeEditOutline } from "react-icons/md";
@@ -8,7 +8,7 @@ const Technologies = () => {
   const { technologies, setNewTechnology, setEditTechnology, setIdTech } =
     useContext(Context);
 
-  const teste = (event) => {
+  const teste = (event: any) => {
     setEditTechnology(true);
     let id = event.target.closest("li").id;
     setIdTech(id);
@@ -24,11 +24,11 @@ const Technologies = () => {
       </div>
       <ListTechnologies>
         {technologies.map((technology) => (
-          <li key={technology.id} id={technology.id}>
+          <li key={technology.id} id={`${technology.id}`}>
             <h4>{technology.title}</h4>
             <div>
               <span>{technology.status}</span>
-              <MdModeEditOutline onClick={teste} />
+              <MdModeEditOutline onClick={(e) => teste(e)} />
             </div>
           </li>
         ))}

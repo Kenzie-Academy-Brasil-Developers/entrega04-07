@@ -1,12 +1,12 @@
 import { FundoModal, ModalCreateTechnology } from "./styled";
 import { AiOutlineClose } from "react-icons/ai";
 import { useContext } from "react";
-import { Context } from "../../contexts/AuthContexts";
+import { Context, IUserCreateTechnology } from "../../contexts/AuthContexts";
 import { useForm } from "react-hook-form";
 
 const NewTechnology = () => {
   const { setNewTechnology, createTechnology } = useContext(Context);
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit } = useForm<IUserCreateTechnology>();
 
   return (
     <FundoModal>
@@ -27,12 +27,7 @@ const NewTechnology = () => {
           />
 
           <label htmlFor="status">Selecionar status</label>
-          <select
-            name=""
-            id="status"
-            placeholder="Status"
-            {...register("status")}
-          >
+          <select id="status" placeholder="Status" {...register("status")}>
             <option value="Iniciante">Iniciante</option>
             <option value="Intermediário">Intermediario</option>
             <option value="Avançado">Avançado</option>

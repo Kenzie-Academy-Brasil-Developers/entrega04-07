@@ -4,6 +4,7 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useContext } from "react";
 import { Context } from "../../contexts/AuthContexts";
+import { IUserCadastro } from "../../contexts/AuthContexts";
 
 const FormCadastro = () => {
   // SCHEMA, REQUISIÇÕES DE DOS INPUTS
@@ -26,7 +27,7 @@ const FormCadastro = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({
+  } = useForm<IUserCadastro>({
     resolver: yupResolver(formSchema),
   });
 
@@ -90,7 +91,7 @@ const FormCadastro = () => {
           />
 
           <label htmlFor="modulo">Selecionar Modulo *</label>
-          <select name="" id="modulo" {...register("course_module")}>
+          <select id="modulo" {...register("course_module")}>
             <option value="Primeiro modulo (Introdução Front-end)">
               Primeiro modulo
             </option>

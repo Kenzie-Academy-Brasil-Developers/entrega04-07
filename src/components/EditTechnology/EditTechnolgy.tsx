@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { Context } from "../../contexts/AuthContexts";
+import { Context, IUserCreateTechnology } from "../../contexts/AuthContexts";
 import { SectionFundoModalEdit, ModalEdit } from "./styled";
 import { AiOutlineClose } from "react-icons/ai";
 import { useForm } from "react-hook-form";
@@ -16,7 +16,7 @@ const EditTechnology = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({
+  } = useForm<IUserCreateTechnology>({
     resolver: yupResolver(formSchema),
   });
 

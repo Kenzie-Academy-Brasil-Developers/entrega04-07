@@ -7,7 +7,7 @@ import { Formu, Section, Perror } from "./styled";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
-import { Context } from "../../contexts/AuthContexts";
+import { Context, IUserLogin } from "../../contexts/AuthContexts";
 
 const FormLogin = () => {
   const [type, setType] = useState("password");
@@ -21,12 +21,11 @@ const FormLogin = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({
+  } = useForm<IUserLogin>({
     resolver: yupResolver(schema),
   });
 
-  function typeInput(e) {
-    e.preventDefault();
+  function typeInput() {
     if (type === "password") {
       setType("text");
     } else {
@@ -60,7 +59,13 @@ const FormLogin = () => {
               className="password"
               {...register("password")}
             />
-            <button onClick={typeInput} className="type-visibility">
+            <button
+              onClick={(e) => {
+                typeInput();
+                e.preventDefault();
+              }}
+              className="type-visibility"
+            >
               {type === "password" ? <MdVisibilityOff /> : <MdVisibility />}
             </button>
           </div>

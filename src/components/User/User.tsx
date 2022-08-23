@@ -9,7 +9,7 @@ import Loading from "../Loading/Loading";
 import EditTechnology from "../EditTechnology/EditTechnolgy";
 
 const User = () => {
-  const { user, logout, loading, newTechnology, editTechnology} =
+  const { user, logout, loading, newTechnology, editTechnology } =
     useContext(Context);
 
   if (loading) return <Loading />;

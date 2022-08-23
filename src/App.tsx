@@ -8,7 +8,7 @@ function App() {
     <>
       <Router />
       <GlobalStyle />
-      <ToastContainer theme="dark" autoClose="700" />
+      <ToastContainer/>
     </>
   );
 }

@@ -1,5 +1,5 @@
-import FormCadastro from "../../components/FormCadastro/index.jsx";
-import { Main } from "./styled.js";
+import FormCadastro from "../../components/FormCadastro";
+import { Main } from "./styled";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 
